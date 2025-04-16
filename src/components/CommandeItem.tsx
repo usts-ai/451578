@@ -31,25 +31,25 @@ const CommandeItem: React.FC<CommandeItemProps> = ({ commande, index }) => {
       className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
     >
       <div 
-        className="p-4 cursor-pointer" 
+        className="p-3 md:p-4 cursor-pointer" 
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex justify-between items-center mb-2">
-          <h3 className="font-bold text-gray-800">{commande.cafe}</h3>
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(commande.statut)}`}>
+        <div className="flex justify-between items-center mb-1 md:mb-2">
+          <h3 className="font-bold text-gray-800 text-sm md:text-base">{commande.cafe}</h3>
+          <span className={`px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium ${getStatusColor(commande.statut)}`}>
             {commande.statut}
           </span>
         </div>
-        <p className="text-sm text-gray-500 mb-3">{commande.date}</p>
+        <p className="text-xs md:text-sm text-gray-500 mb-2 md:mb-3">{commande.date}</p>
         <div className="flex justify-between items-center">
-          <span className="text-sm">
+          <span className="text-xs md:text-sm">
             {commande.items.length} {commande.items.length > 1 ? 'articles' : 'article'}
           </span>
           <div className="flex items-center">
-            <span className="font-bold text-orange-500 mr-2">{commande.total.toFixed(2)}€</span>
+            <span className="font-bold text-orange-500 mr-2 text-sm md:text-base">{commande.total.toFixed(2)}€</span>
             <motion.svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className="h-5 w-5 text-gray-500" 
+              className="h-4 w-4 md:h-5 md:w-5 text-gray-500" 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"
@@ -68,12 +68,12 @@ const CommandeItem: React.FC<CommandeItemProps> = ({ commande, index }) => {
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="border-t border-gray-100 px-4 py-3"
+          className="border-t border-gray-100 px-3 md:px-4 py-2 md:py-3"
         >
-          <h4 className="font-medium text-gray-700 mb-2">Détails de la commande</h4>
-          <ul className="space-y-2 mb-3">
+          <h4 className="font-medium text-gray-700 text-xs md:text-sm mb-2">Détails de la commande</h4>
+          <ul className="space-y-1 md:space-y-2 mb-3">
             {commande.items.map((item, idx) => (
-              <li key={idx} className="flex justify-between text-sm">
+              <li key={idx} className="flex justify-between text-xs md:text-sm">
                 <span>
                   {item.quantite} x {item.nom}
                 </span>
@@ -81,16 +81,16 @@ const CommandeItem: React.FC<CommandeItemProps> = ({ commande, index }) => {
               </li>
             ))}
           </ul>
-          <div className="border-t border-gray-100 pt-2 flex justify-between font-bold">
+          <div className="border-t border-gray-100 pt-2 flex justify-between text-xs md:text-sm font-bold">
             <span>Total</span>
             <span className="text-orange-500">{commande.total.toFixed(2)}€</span>
           </div>
           {commande.statut === 'En cours' && (
-            <div className="mt-4 flex justify-end">
+            <div className="mt-3 md:mt-4 flex justify-end">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-shadow"
+                className="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-shadow"
               >
                 Suivre ma commande
               </motion.button>
